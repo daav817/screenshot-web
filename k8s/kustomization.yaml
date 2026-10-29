@@ -8,4 +8,4 @@ resources:
   - ingress.yaml
 images:
   - name: ghcr.io/daav817/screenshot-web
-    newTag: latest
+    newTag: 0.1.0.2
