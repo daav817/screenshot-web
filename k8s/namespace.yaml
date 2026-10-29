@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: screenshot
+  labels:
+    app.kubernetes.io/name: screenshot-web
+    app.kubernetes.io/part-of: energia

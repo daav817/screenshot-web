@@ -1,0 +1,24 @@
+# Apply once by hand (kubectl apply -f k8s/argocd-application.yaml); ArgoCD then keeps the cluster in sync with k8s/.
+# Not part of kustomization.yaml on purpose.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: screenshot-web
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/daav817/screenshot-web.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: screenshot
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
